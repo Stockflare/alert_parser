@@ -1,0 +1,16 @@
+i18n:
+  image: stockflare/api-i18n-vol:v0.1.0
+  environment:
+    LOCALEAPP_API_KEY: sa9a3cR0NYDMSeI7pPEXYZnZAiXNHhXsOBwxOsF4zHKeJwzfMZ
+    INTERVAL: '900'
+    MERGE_FROM: en
+parser:
+  build: .
+  environment:
+    LOCALES_PATH: /stockflare/locales/
+  volumes:
+    - .:/stockflare
+  volumes_from:
+    - i18n
+  links:
+    - i18n

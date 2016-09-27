@@ -1,0 +1,2 @@
+compose build
+compose run parser bundle install
