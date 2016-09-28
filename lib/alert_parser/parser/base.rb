@@ -6,7 +6,8 @@ module AlertParser
       def initialize(locale: nil, currency_code: 'usd', data: {})
         @locale = locale
         @currency_code = currency_code
-        @data = data
+        # ensure data keys are symbols
+        @data = Hash[data.collect { |k,v| [k.to_sym, v] }]
       end
 
       def attitude
