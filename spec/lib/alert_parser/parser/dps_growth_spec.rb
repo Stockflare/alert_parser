@@ -22,7 +22,7 @@ module AlertParser
 
 
     describe '%short_name interpolation' do
-      specify { parser.messages.values.each { |m| expect(m).to include(data[:short_name]) } }
+      specify { expect(parser.message).to include(data[:short_name]) }
     end
 
     describe '#positive?' do

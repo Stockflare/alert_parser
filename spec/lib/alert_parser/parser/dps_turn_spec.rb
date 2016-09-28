@@ -26,7 +26,7 @@ module AlertParser
     specify { expect { subject.positive? }.to_not raise_error }
 
     describe '%short_name interpolation' do
-      specify { parser.messages.values.each { |m| expect(m).to include(data[:short_name]) } }
+      specify { expect(parser.message).to include(data[:short_name]) }
     end
 
     describe '#positive?' do
@@ -50,12 +50,12 @@ module AlertParser
 
       it { should eq "$123,456,789.12" }
 
-      describe '#messages' do
+      describe '#message' do
         before { allow(parser).to receive(:forecast_dps).and_return(subject) }
 
         before { allow(parser).to receive(:positive?).and_return(true) }
 
-        specify { parser.messages.values.each { |m| expect(m).to include(subject) } }
+        specify { expect(parser.message).to include(subject) }
       end
     end
 
@@ -72,10 +72,10 @@ module AlertParser
 
       it { should eq "$123,456,789.12" }
 
-      describe '#messages' do
+      describe '#message' do
         before { allow(parser).to receive(:forecast_dps).and_return(subject) }
 
-        specify { parser.messages.values.each { |m| expect(m).to include(subject) } if parser.positive? }
+        specify { expect(parser.message).to include(subject) if parser.positive? }
       end
     end
   end

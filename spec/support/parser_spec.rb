@@ -2,7 +2,7 @@ module AlertParser
   shared_examples 'a parser class' do
     it { should respond_to(:attitude) }
 
-    it { should respond_to(:messages) }
+    it { should respond_to(:message) }
 
     it { should respond_to(:positive?) }
 
@@ -44,18 +44,12 @@ module AlertParser
       specify { expect(subject.name).to match /^[_a-z]+$/ }
     end
 
-    describe '#messages' do
-      specify { expect(subject.messages).to be_a Hash }
+    describe '#message' do
+      specify { expect(subject.message).to be_a String }
 
-      specify { expect(subject.messages).to_not be_empty }
+      specify { expect(subject.message).to_not be_empty }
 
-      specify { subject.messages.keys.each { |k| expect(k).to be_a String } }
-
-      specify { subject.messages.values.each { |m| expect(m).to be_a String } }
-
-      specify { subject.messages.values.each { |m| expect(m).to_not match /\%[_a-zA-Z0-9]+/ } }
-
-      specify { subject.messages.keys.each { |k| expect(k).to match /^[a-z]{2}$/ } }
+      specify { expect(subject.message).to_not match /\%[_a-zA-Z0-9]+/ }
     end
 
     describe '#currency' do

@@ -17,11 +17,11 @@ module AlertParser
         locale.format_currency(currency_code, value)
       end
 
-      def messages
-        { locale.language => interpolate(message, locale) }
+      def message
+        interpolate(translation, locale)
       end
 
-      def message
+      def translation
         locale.translations['notifications'][name][attitude]
       end
 

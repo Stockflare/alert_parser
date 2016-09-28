@@ -6,34 +6,6 @@ module AlertParser
 
     it { should respond_to(:get) }
 
-    it { should respond_to(:index) }
-
-    describe '#index' do
-      let(:const) { Parser.all.sample }
-
-      subject { Parser.index(const) }
-
-      it { should be_a Fixnum }
-
-      it { should be >= 700 }
-
-      it { should be <= 800 }
-
-      it { should be <= Parser.all.count }
-    end
-
-    describe '#index underscored' do
-      let(:const) { 'volume_ten_day' }
-
-      subject { Parser.index(const) }
-
-      it { should be_a Fixnum }
-
-      it { should be > 0 }
-
-      it { should be <= Parser.all.count }
-    end
-
     describe '#all' do
       subject { Parser.all }
 

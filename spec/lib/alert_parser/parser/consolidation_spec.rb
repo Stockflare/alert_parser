@@ -20,7 +20,7 @@ module AlertParser
     specify { expect { subject.positive? }.to_not raise_error }
 
     describe '%short_name interpolation' do
-      specify { parser.messages.values.each { |m| expect(m).to include(data[:short_name]) } }
+      specify { expect(parser.message).to include(data[:short_name]) }
     end
 
     describe '#positive?' do
@@ -40,10 +40,10 @@ module AlertParser
 
       it { should eq Time.now.utc.strftime('%Y-%m-%d') }
 
-      describe '#messages' do
+      describe '#message' do
         before { allow(parser).to receive(:split_date).and_return(subject) }
 
-        specify { parser.messages.values.each { |m| expect(m).to include(subject) } }
+        specify { expect(parser.message).to include(subject) }
       end
     end
 
@@ -58,10 +58,10 @@ module AlertParser
 
       it { should eq "123456789.1235" }
 
-      describe '#messages' do
+      describe '#message' do
         before { allow(parser).to receive(:ratio).and_return(subject) }
 
-        specify { parser.messages.values.each { |m| expect(m).to include(subject) } }
+        specify { expect(parser.message).to include(subject) }
       end
     end
 
@@ -76,10 +76,10 @@ module AlertParser
 
       it { should eq "$123,456,789.12" }
 
-      describe '#messages' do
+      describe '#message' do
         before { allow(parser).to receive(:price).and_return(subject) }
 
-        specify { parser.messages.values.each { |m| expect(m).to include(subject) } }
+        specify { expect(parser.message).to include(subject) }
       end
     end
 
@@ -94,10 +94,10 @@ module AlertParser
 
       it { should eq "$123,456,789.12" }
 
-      describe '#messages' do
+      describe '#message' do
         before { allow(parser).to receive(:price_yesterday).and_return(subject) }
 
-        specify { parser.messages.values.each { |m| expect(m).to include(subject) } }
+        specify { expect(parser.message).to include(subject) }
       end
     end
 
@@ -114,10 +114,10 @@ module AlertParser
 
       specify { expect(subject.downcase).to eq days[Time.at(value).wday] }
 
-      describe '#messages' do
+      describe '#message' do
         before { allow(parser).to receive(:timestamp).and_return(subject) }
 
-        specify { parser.messages.values.each { |m| expect(m).to include(subject) } }
+        specify { expect(parser.message).to include(subject) }
       end
     end
   end

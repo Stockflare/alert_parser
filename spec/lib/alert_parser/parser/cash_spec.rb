@@ -26,7 +26,7 @@ module AlertParser
     end
 
     describe '%short_name interpolation' do
-      specify { parser.messages.values.each { |m| expect(m).to include(data[:short_name]) } }
+      specify { expect(parser.message).to include(data[:short_name]) }
     end
 
     describe '#net_cash_to_share_price' do
@@ -38,10 +38,10 @@ module AlertParser
 
       it { should eq "12,345,678,912.35%" }
 
-      describe '#messages' do
+      describe '#message' do
         before { allow(parser).to receive(:net_cash_to_share_price).and_return(subject) }
 
-        specify { parser.messages.values.each { |m| expect(m).to include(subject) } }
+        specify { expect(parser.message).to include(subject) }
       end
     end
   end

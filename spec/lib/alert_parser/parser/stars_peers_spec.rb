@@ -24,7 +24,7 @@ module AlertParser
     specify { expect { subject.positive? }.to_not raise_error }
 
     describe '%short_name interpolation' do
-      specify { parser.messages.values.each { |m| expect(m).to include(data[:short_name]) } }
+      specify { expect(parser.message).to include(data[:short_name]) }
     end
 
     describe '#positive?' do
@@ -34,11 +34,11 @@ module AlertParser
     end
 
     describe '%short_name interpolation' do
-      specify { parser.messages.values.each { |m| expect(m).to include(data[:short_name]) } }
+      specify { expect(parser.message).to include(data[:short_name]) }
     end
 
     describe '%rics interpolation' do
-      specify { parser.messages.values.each { |m| expect(m).to include(data[:rics].upcase) } }
+      specify { expect(parser.message).to include(data[:rics].upcase) }
     end
   end
 end
