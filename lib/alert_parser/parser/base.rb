@@ -9,7 +9,7 @@ module AlertParser
         @locale = locale
         @currency_code = currency_code
         # ensure data keys are symbols
-        @data = Hash[data.collect { |k,v| [k.to_sym, YAML.load(v)] }]
+        @data = Hash[data.collect { |k,v| [k.to_sym, v ? YAML.load(v) : nil] }]
       end
 
       def attitude
