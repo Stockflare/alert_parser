@@ -10,7 +10,7 @@ module AlertParser
       end
 
       def positive?
-        data[:forecast_dps] > data[:forecast_dps_yesterday]
+        data[:forecast_dps].to_f > data[:forecast_dps_yesterday].to_f
       end
     end
   end

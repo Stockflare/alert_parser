@@ -10,7 +10,7 @@ module AlertParser
       end
 
       def positive?
-        data[:long_term_growth] > data[:long_term_growth_one_week_ago]
+        data[:long_term_growth].to_f > data[:long_term_growth_one_week_ago].to_f
       end
     end
   end

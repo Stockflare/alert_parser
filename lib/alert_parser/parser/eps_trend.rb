@@ -10,7 +10,7 @@ module AlertParser
       end
 
       def positive?
-        data[:forecast_eps] > data[:forecast_eps_one_week_ago]
+        data[:forecast_eps].to_f > data[:forecast_eps_one_week_ago].to_f
       end
     end
   end

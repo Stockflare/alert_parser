@@ -9,7 +9,23 @@ module AlertParser
         @locale = locale
         @currency_code = currency_code
         # ensure data keys are symbols
-        @data = Hash[data.collect { |k,v| [k.to_sym, v ? YAML.load(v) : nil] }]
+        # @data = Hash[data.collect { |k,v| [k.to_sym, v ? YAML.load(v) : nil] }]
+        @data = parse_hash(data)
+      end
+
+      def parse_hash(input)
+        out = {}
+        input.each do |k, v|
+          out_v = v
+          case v.class.name
+          when 'String'
+            out_v = YAML.load(v)
+          when 'Hash'
+            out_v = parse_hash(v)
+          end
+          out[k.to_sym] = out_v
+        end
+        out
       end
 
       def attitude

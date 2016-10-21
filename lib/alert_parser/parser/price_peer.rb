@@ -2,7 +2,7 @@ module AlertParser
   module Parser
     class PricePeer < Base
       def positive?
-        data[:peer_price_change] >= 0
+        data[:peer_price_change].to_f >= 0.0
       end
 
       def peer_price_change(value, locale)

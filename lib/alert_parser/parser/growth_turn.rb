@@ -15,7 +15,7 @@ module AlertParser
       end
 
       def positive?
-        data[:long_term_growth] > data[:long_term_growth_yesterday]
+        data[:long_term_growth].to_f > data[:long_term_growth_yesterday].to_f
       end
     end
   end

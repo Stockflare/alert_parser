@@ -10,7 +10,7 @@ module AlertParser
       end
 
       def positive?
-        data[:target_price] > data[:target_price_one_week_ago]
+        data[:target_price].to_f > data[:target_price_one_week_ago].to_f
       end
     end
   end
