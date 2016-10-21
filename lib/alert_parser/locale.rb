@@ -13,15 +13,15 @@ module AlertParser
     end
 
     def format_currency(code, value, dp = 2)
-      currency(code).gsub('%n', format_number(value.round(dp)))
+      currency(code).gsub('%n', format_number(value.to_f.round(dp)))
     end
 
     def format_percent(value, dp = 2)
-      '%s%' % format_number(value.round(dp))
+      '%s%' % format_number(value.to_f.round(dp))
     end
 
     def format_ratio(value, dp = 2)
-      '%sx' % format_number(value.round(dp))
+      '%sx' % format_number(value.to_f.round(dp))
     end
 
     def recommendation(value)
