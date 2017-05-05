@@ -15,7 +15,7 @@ module AlertParser
     def translations
       # Get the desired language and store it for 20 minutes
       if !@@translations[language] || !@@translations_loaded[language] || @@translations_loaded[language] < (Time.now.utc.to_i - (60 * 20) )
-        @@translations[language] = Services::I18n.get(locale: language).call.body[language.to_sym]
+        @@translations[language] = Services::Transport.new('i18n', '', {locale: language}, {method: :get}).call.body[language.to_sym]
         @@translations_loaded[language] = Time.now.utc.to_i
       end
 
