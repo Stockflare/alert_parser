@@ -2,8 +2,6 @@
 module AlertParser
   class Locale
 
-    attr_reader :translations
-    
     def initialize(translations: {})
       @translations = translations
     end
