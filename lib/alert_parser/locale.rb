@@ -1,28 +1,13 @@
-require_dependency 'shotgun'
 
 module AlertParser
   class Locale
 
-    @@translations = {}
-    @@translations_loaded = {}
-
-    LOCALES_PATH = ENV['LOCALES_PATH']
-
-    attr_reader :language
-
-    def initialize(language: 'en')
-      @language = language
+    def initialize(translations: {})
+      @translations = translations
     end
 
     def translations
-      # Get the desired language and store it for 20 minutes
-      if !@@translations[language] || !@@translations_loaded[language] || @@translations_loaded[language] < (Time.now.utc.to_i - (60 * 20) )
-        @@translations[language] = Services::I18n.get(locale: language).call.body[language.to_sym]
-        @@translations_loaded[language] = Time.now.utc.to_i
-      end
-
-      @@translations[language]
-
+      @translations
     end
 
     def format_currency(code, value, dp = 2)
@@ -51,8 +36,5 @@ module AlertParser
       translations['common']['currencies']['symbols'][code.to_s.downcase].dup
     end
 
-    # def file(locale = 'en')
-    #   @file ||= File.open(File.expand_path("#{LOCALES_PATH}/#{language}.yml", __FILE__)).read
-    # end
   end
 end
