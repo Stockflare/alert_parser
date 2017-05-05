@@ -1,3 +1,5 @@
+require_dependency 'shotgun'
+
 module AlertParser
   class Locale
 
