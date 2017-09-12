@@ -4,7 +4,7 @@ module AlertParser
       INDEX = 820
 
       def positive?
-        alert.data[:positive]
+        data[:positive]
       end
 
       def price(value, locale)
