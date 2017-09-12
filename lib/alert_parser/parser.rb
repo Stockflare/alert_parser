@@ -33,6 +33,10 @@ module AlertParser
     autoload :TargetTrend, 'alert_parser/parser/target_trend'
     autoload :TargetTurn, 'alert_parser/parser/target_turn'
     autoload :VolumeTenDay, 'alert_parser/parser/volume_ten_day'
+    autoload :TechnicalBollingerBandsSignal, 'alert_parser/parser/technical_bollinger_bands_signal'
+    autoload :TechnicalMacdSignal, 'alert_parser/parser/technical_macd_signal'
+    autoload :TechnicalRsiSignal, 'alert_parser/parser/technical_rsi_signal'
+    autoload :TechnicalSmaSignal, 'alert_parser/parser/technical_sma_signal'
 
     def self.get(name)
       call(camelize(name))
